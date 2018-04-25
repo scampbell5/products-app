@@ -13,10 +13,15 @@ import { Product } from './product';
 export class AppComponent implements OnInit {
   title = 'app';
   products$: Observable<Product[]>;
+  products: Product[];
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.products$ = this.productService.getProducts("");
+    this.products$ = this.productService.getProducts();
+  }
+
+  search(searchTerm: string) {
+    this.products$ = this.productService.getProducts(searchTerm);
   }
 }

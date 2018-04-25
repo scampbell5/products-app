@@ -9,11 +9,11 @@ export class ProductService {
 
     constructor(private httpClient: HttpClient) {}
 
-    getProducts(searchTerm: string) : Observable<Product[]> {
-        if (!searchTerm.trim()) {
+    getProducts(searchTerm?: string) : Observable<Product[]> {
+        if (searchTerm == null || !searchTerm.trim()) {
             return this.httpClient.get<Product[]>(this.url);
         }
         
-        return this.httpClient.get<Product[]>('${this.url}?${searchTerm}');
+        return this.httpClient.get<Product[]>(`${this.url}/?searchTerm=${searchTerm}`);
     }
 }
