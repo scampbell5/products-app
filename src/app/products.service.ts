@@ -14,6 +14,6 @@ export class ProductService {
             return this.httpClient.get<Product[]>(this.url);
         }
         
-        return this.httpClient.get<Product[]>(`${this.url}/?searchTerm=${searchTerm}`);
+        return this.httpClient.get<Product[]>(`${this.url}/?searchTerm=${searchTerm.trim()}`);
     }
 }

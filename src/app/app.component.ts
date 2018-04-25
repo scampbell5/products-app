@@ -13,7 +13,7 @@ import { Product } from './product';
 export class AppComponent implements OnInit {
   title = 'app';
   products$: Observable<Product[]>;
-  products: Product[];
+  searchTerm: string;
 
   constructor(private productService: ProductService) {}
 
@@ -22,6 +22,11 @@ export class AppComponent implements OnInit {
   }
 
   search(searchTerm: string) {
+    console.log(this.searchTerm);
     this.products$ = this.productService.getProducts(searchTerm);
+  }
+
+  setSearchTerm(searchTerm: string) {
+    this.searchTerm = searchTerm;
   }
 }

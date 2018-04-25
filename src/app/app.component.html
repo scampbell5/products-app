@@ -1,33 +1,45 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Products App
-  </h1>
+<div class="card">
+  <div class="card-header text-center">
+    <h1>
+      Products App
+    </h1>
+  </div>
+  <div class="card-body">
+    <div class="input-group">
+        <input #searchInput type="search" class="form-control" placeholder="Search..." (keyUp.enter)="search(searchInput.value)" (blur)=setSearchTerm(searchInput.value) />
+        <button class="btn btn-primary" (click)=search(searchTerm)>Search</button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th >External ID</th>
+          <th scope="col">Description</th>
+          <th scope="col">Department Name</th>
+          <th scope="col">Last Sold Date</th>
+          <th scope="col">Shelf Life</th>
+          <th scope="col">Price</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Cost</th>
+          <th scope="col">xFor</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let product of products$ | async">
+        <td>{{product.externalId}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.department.name}}</td>
+        <td>{{product.lastSoldDate}}</td>
+        <td>{{product.shelfLife}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.unit}}</td>
+        <td>{{product.cost}}</td>
+        <td>{{product.xfor}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="card-footer text-center">
+    <footer>
+      Sean Campbell 2018
+    </footer>
+  </div>
 </div>
-<h2>Products app allows you to search by department, description or ID!</h2>
-<input type="search" (input)=search($event.target.value) />
-<table>
-  <td>External ID</td>
-  <td>Description</td>
-  <td>Department Name</td>
-  <td>Last Sold Date</td>
-  <td>Shelf Life</td>
-  <td>Price</td>
-  <td>Unit</td>
-  <td>Cost</td>
-  <td>xFor</td>
-  <tr *ngFor="let product of products$ | async">
-    <td>{{product.externalId}}</td>
-    <td>{{product.description}}</td>
-    <td>{{product.department.name}}</td>
-    <td>{{product.lastSoldDate}}</td>
-    <td>{{product.shelfLife}}</td>
-    <td>{{product.price}}</td>
-    <td>{{product.unit}}</td>
-    <td>{{product.cost}}</td>
-    <td>{{product.xfor}}</td>
-  </tr>
-</table>
-<footer>
-  Sean Campbell 2018
-</footer>
